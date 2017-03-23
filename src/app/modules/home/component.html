@@ -1,0 +1,62 @@
+<header class="ui">
+    <div class="ui container text-block-center">
+        <h1 class="ui header purple">
+            Sale Track&nbsp;
+            <i class="credit card alternative icon"></i>
+        </h1>
+        <p>This example shows how to use lazy loaded images, a sticky menu, and a simple text container</p>
+    </div>
+</header>
+<section class="ui">
+    <sui-tabset>
+        <div class="ui text menu">
+            <div class="ui container four column grid">
+                <div class="wide column"></div>
+                <div class="wide column">
+                    <a class="yellow item text-block-center" suiTabHeader="1">
+                        <strong>Produtos</strong>
+                    </a>
+                </div>
+                <div class="wide column">
+                    <a class="yellow item text-block-center" suiTabHeader="2">
+                        <strong>Serviços</strong>
+                    </a>
+                </div>
+                <div class="wide column"></div>
+            </div>
+        </div>
+        <div class="ui container" suiTabContent="1">
+            <div class="ui one column grid">
+                <div class="column right aligned">
+                    <button class="ui purple button">
+                        <i class="icon gift"></i>
+                        Add Sale
+                    </button>
+                </div>
+                <div class="column" *ngFor="let productSale of productSaleList">
+                    <div class="ui fluid raised card">
+                        <div class="content ">
+                            <div class="item-image">
+                                <img src="http://static1.netshoes.net/Produtos/tenis-nike-dart-12-msl/68/D12-2683-068/D12-2683-068_detalhe1.jpg?resize=254:*">
+                            </div>
+                            <div class="item-content">
+                                <label class="ui header">{{productSale.label}}</label>
+                                <h1 class="ui grey header">{{productSale.value | currency: 'BRL':true:'1.2-2'}}</h1>
+                                <p>{{productSale.description}}</p>
+                                <div class="ui labeled button" tabindex="0">
+                                    <div class="ui blue button">
+                                        <i class="heart icon"></i> Like
+                                    </div>
+                                    <a class="ui basic blue left pointing label">
+                                        1,048
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui container" suiTabContent="2">Second nested tab!</div>
+    </sui-tabset>
+</section>
