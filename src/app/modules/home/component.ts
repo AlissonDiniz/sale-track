@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ProductSale } from './../../domain/product-sale.class';
+import { ModalComponent } from './../../base/component/modal/component';
+import { UOW } from '../../repository/unit-of-work.class';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'app-home',
@@ -6,11 +9,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-    private productSaleList: {image: string, label: string, value: number, description: string}[] = [];
+    @ViewChild('createProductSaleModal')
+    private createProductSaleModal: ModalComponent;
+
+    private productSaleList: ProductSale[] = [];
+    private producSaleModel: ProductSale = new ProductSale();
+
+    constructor(private uow: UOW){}
 
     ngOnInit(): void {
-        this.productSaleList.push({image: '', label: 'Nike Biscuit 2 SL', value: 249.90, description: 'Tenha um aliado na busca por performance nos treinos, com o novo Tênis Nike Dart 12 MSL. Sua estrutura leve e macia, garante ótimo ajuste nos pés, conferindo mais dinamismo as passadas'});
+        this.reload();
+    }
 
+    public reload(){
+        this.uow.productSaleRepository.getAll()
+            .subscribe(data => {
+                this.productSaleList = data;
+            });
+    }
+
+    public cancel(){
+        this.producSaleModel = new ProductSale();
+        this.createProductSaleModal.close();
+    }
+
+    public save(){
+        this.uow.productSaleRepository.save(this.producSaleModel)
+            .subscribe(() => this.createProductSaleModal.close());
+    }
+
+    public like(productSale: ProductSale){
+        productSale.likes++;
     }
 
 }

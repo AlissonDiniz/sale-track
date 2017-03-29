@@ -1,0 +1,16 @@
+<div class="ui cards">
+    <div class="card">
+        <div class="content">
+            <img class="ui image" src="{{model}}" />
+        </div>
+        <div *ngIf="!model" class="ui bottom attached button" (click)="input.click()">
+            <i class="add icon"></i>
+            Add Image
+        </div>
+        <div *ngIf="model" class="ui bottom red attached button" (click)="clearImage()">
+            <i class="minus icon"></i>
+            Remove Image
+        </div>
+        <input #input style="display:none" type="file" accept=".png, .jpg" (change)="handleImage($event)" />
+    </div>
+</div>
