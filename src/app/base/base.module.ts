@@ -1,3 +1,4 @@
+import { CommentComponent } from './component/comment/component';
 import { ImageComponent } from './component/image/component';
 import { ModalComponent } from './component/modal/component';
 import { RouterModule } from '@angular/router';
@@ -8,7 +9,7 @@ import { SuiModule } from 'ng2-semantic-ui';
 
 @NgModule({
     imports: [RouterModule, CommonModule, FormsModule, SuiModule],
-    declarations: [ModalComponent, ImageComponent],
-    exports: [RouterModule, CommonModule, FormsModule, SuiModule, ModalComponent, ImageComponent]
+    declarations: [ModalComponent, ImageComponent, CommentComponent],
+    exports: [RouterModule, CommonModule, FormsModule, SuiModule, ModalComponent, ImageComponent, CommentComponent]
 })
 export class BaseModule{}

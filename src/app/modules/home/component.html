@@ -14,96 +14,22 @@
                 <div class="wide column"></div>
                 <div class="wide column">
                     <a class="yellow item text-block-center" suiTabHeader="1">
-                        <strong>Produtos</strong>
+                        <strong>Products</strong>
                     </a>
                 </div>
                 <div class="wide column">
                     <a class="yellow item text-block-center" suiTabHeader="2">
-                        <strong>Serviços</strong>
+                        <strong>Services</strong>
                     </a>
                 </div>
                 <div class="wide column"></div>
             </div>
         </div>
         <div class="ui container" suiTabContent="1">
-            <div class="ui one column grid">
-                <div class="column right aligned">
-                    <button class="ui purple button" (click)="createProductSaleModal.open()">
-                        <i class="icon gift"></i>
-                        Add Sale
-                    </button>
-                </div>
-                <app-modal #createProductSaleModal [title]="'Create new Product Sale'" [length]="'large'">
-                    <form #productSaleForm app-modal-content class="ui form">
-                        <div class="ui column stackable grid">
-                            <div class="five wide column">
-                                <app-image [(model)]="producSaleModel.image"></app-image>
-                            </div>
-                            <div class="eleven wide column">
-                                <div class="field">
-                                    <label>Name</label>
-                                    <input type="text" name="name" placeholder="Insert Name" required [(ngModel)]="producSaleModel.name">
-                                </div>
-                                <div class="field">
-                                    <label>Price</label>
-                                    <div class="ui icon input">
-                                        <input type="number" name="price" placeholder="Insert Price" required [(ngModel)]="producSaleModel.price" />
-                                        <i class="dollar icon"></i>
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label>Store Name</label>
-                                    <input type="text" name="storeName" placeholder="Insert Store Name" required [(ngModel)]="producSaleModel.storeName">
-                                </div>
-                                <div class="field">
-                                    <label>Sale Link</label>
-                                    <div class="ui icon input">
-                                         <input type="url" name="link" placeholder="Insert Sale Link" required [(ngModel)]="producSaleModel.link">
-                                        <i class="linkify icon"></i>
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label>Description</label>
-                                    <textarea name="description" required [(ngModel)]="producSaleModel.description"></textarea>
-                                </div>
-                            </div>                           
-                        </div>
-                        <div class="ui one column grid">
-                            <div class="column right aligned">
-                                <button class="ui button" type="button" (click)="cancel()">Cancel</button>
-                                <button class="ui purple button" type="submit" (click)="save()" [disabled]="!productSaleForm.valid">Save</button>
-                            </div>
-                        </div>
-                    </form>
-                </app-modal>
-                <div class="column" *ngFor="let productSale of productSaleList">
-                    <div class="ui fluid raised card">
-                        <div class="content ">
-                            <div class="item-image">
-                                <img src="{{productSale.image}}">
-                            </div>
-                            <div class="item-content">
-                                <label class="ui header">{{productSale.name}}</label>
-                                <h1 class="ui grey header">{{productSale.price | currency: 'BRL':true:'1.2-2'}}</h1>
-                                <p>{{productSale.description}}</p>
-                                <div class="ui labeled button" tabindex="0">
-                                    <div class="ui blue button" (click)="like(productSale)">
-                                        <i class="heart icon"></i> Like
-                                    </div>
-                                    <a class="ui basic blue left pointing label">
-                                        {{productSale.likes}}
-                                    </a>
-                                </div>
-                                <a class="ui blue basic button" href="{{productSale.link}}" target="_blank">
-                                    <i class="icon shop"></i>
-                                    Got to {{productSale.storeName}}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <app-product-sale #productSaleComponent></app-product-sale>
         </div>
-        <div class="ui container" suiTabContent="2">Second nested tab!</div>
+        <div class="ui container" suiTabContent="2">
+            <app-service-sale #productSaleComponent></app-service-sale>
+        </div>
     </sui-tabset>
 </section>

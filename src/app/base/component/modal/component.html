@@ -1,5 +1,8 @@
 <div #modal class="ui {{length}} modal">
-    <div class="header">{{title}}</div>
+    <i class="close icon" (click)="close()"></i>
+    <div class="header">
+        {{title}}
+    </div>
     <div class="content">
         <ng-content selector="[app-modal-content]"></ng-content>
     </div>

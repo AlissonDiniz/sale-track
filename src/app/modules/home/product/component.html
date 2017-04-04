@@ -1,0 +1,91 @@
+<div class="ui one column grid">
+    <div class="column">
+        <button class="ui purple right floated button" (click)="createSaleModal.open()">
+            <i class="icon gift"></i>
+            Add Product Sale
+        </button>
+        <div class="ui search">
+            <form #searchForm="ngForm" (submit)="search()">
+                <div class="ui icon {{searchModel.status}} input right floated">
+                    <input class="prompt" type="text" name="search" placeholder="Search..." [(ngModel)]="searchModel.value" [disabled]="productSaleList.length == 0" />
+                    <i class="search icon"></i>
+                </div>
+            </form>
+        </div>
+    </div>
+    <app-modal #createSaleModal [title]="'Create new Product Sale'" [length]="'large'">
+        <form #saleForm="ngForm" app-modal-content class="ui form">
+            <div class="ui column stackable grid">
+                <div class="five wide column">
+                    <app-image [(model)]="saleModel.image"></app-image>
+                </div>
+                <div class="eleven wide column">
+                    <div class="required field">
+                        <label>Name</label>
+                        <input type="text" name="name" placeholder="Insert Name" required [(ngModel)]="saleModel.name">
+                    </div>
+                    <div class="required field">
+                        <label>Price</label>
+                        <div class="ui icon input">
+                            <input type="number" name="price" placeholder="Insert Price" required [(ngModel)]="saleModel.price" />
+                            <i class="dollar icon"></i>
+                        </div>
+                    </div>
+                    <div class="required field">
+                        <label>Store Name</label>
+                        <input type="text" name="storeName" placeholder="Insert Store Name" required [(ngModel)]="saleModel.storeName">
+                    </div>
+                    <div class="required field">
+                        <label>Sale Link</label>
+                        <div class="ui icon input">
+                            <input type="url" name="link" placeholder="Insert Sale Link" required pattern="(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?" [(ngModel)]="saleModel.link">
+                            <i class="linkify icon"></i>
+                        </div>
+                    </div>
+                    <div class="required field">
+                        <label>Description</label>
+                        <textarea name="description" required [(ngModel)]="saleModel.description"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="ui one column grid">
+                <div class="column right aligned">
+                    <button class="ui button" type="button" (click)="cancel()">Cancel</button>
+                    <button class="ui purple button" type="submit" (click)="save()" [disabled]="!saleForm.valid || !saleModel.image">Save</button>
+                </div>
+            </div>
+        </form>
+    </app-modal>
+    <app-comment #commentComponent ></app-comment>
+    <div class="column" *ngIf="productSaleList.length == 0">
+        <h2 class="ui center aligned header">Product Sale not found...</h2>
+    </div>
+    <div class="column" *ngFor="let productSale of productSaleListFiltered">
+        <div class="ui fluid raised card">
+            <div class="content ">
+                <div class="item-image">
+                    <img src="{{productSale.image}}">
+                </div>
+                <div class="item-content">
+                    <label class="ui header">{{productSale.name}}</label>
+                    <h1 class="ui grey header">{{productSale.price | currency: 'USD':true:'1.2-2'}}</h1>
+                    <p>{{productSale.description}}</p>
+                    <div class="ui labeled button" tabindex="0">
+                        <div class="ui blue button" (click)="like(productSale)">
+                            <i class="heart icon"></i> Like
+                        </div>
+                        <a class="ui basic blue left pointing label">
+                            {{productSale.likes}}
+                        </a>
+                    </div>
+                    <button class="ui blue basic button" (click)="openComments(productSale)">
+                        <i class="icon comments"></i> {{productSale.commentList.length}} Comments
+                    </button>
+                    <a class="ui blue basic button" [attr.href]="productSale.link" target="_blank">
+                        <i class="icon shop"></i> Got to {{productSale.storeName}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

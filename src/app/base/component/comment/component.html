@@ -1,0 +1,69 @@
+<app-modal #commentModal [title]="'Comments'">
+    <div class="ui comments">
+        <div class="comment" *ngFor="let firstComment of commentListModel">
+            <a class="avatar">
+                <img src="">
+            </a>
+            <div class="content">
+                <a class="author">{{firstComment.owner}}</a>
+                <div class="metadata">
+                    <span class="date">{{firstComment.dateTimestamp | date: 'yyyy-MM-dd HH:mm'}}</span>
+                </div>
+                <div class="text">
+                    {{firstComment.text}}
+                </div>
+                <div class="actions" (click)="selectComment(firstComment)">
+                    <a class="reply">Reply</a>
+                </div>
+            </div>
+            <div class="comments">
+                <div class="comment" *ngFor="let secondComment of firstComment.commentList">
+                    <a class="avatar">
+                        <img src="">
+                    </a>
+                    <div class="content">
+                        <a class="author">{{secondComment.owner}}</a>
+                        <div class="metadata">
+                            <span class="date">{{secondComment.dateTimestamp | date: 'yyyy-MM-dd HH:mm'}}</span>
+                        </div>
+                        <div class="text">
+                            {{secondComment.text}}
+                        </div>
+                        <div class="actions" (click)="selectComment(secondComment)">
+                            <a class="reply">Reply</a>
+                        </div>
+                    </div>
+                    <div class="comments">
+                        <div class="comment" *ngFor="let thirdComment of secondComment.commentList">
+                            <a class="avatar">
+                                <img src="">
+                            </a>
+                            <div class="content">
+                                <a class="author">{{thirdComment.owner}}</a>
+                                <div class="metadata">
+                                    <span class="date">{{thirdComment.dateTimestamp | date: 'yyyy-MM-dd HH:mm'}}</span>
+                                </div>
+                                <div class="text">
+                                    {{thirdComment.text}}
+                                </div>
+                            </div>
+                            <div class="comments">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form #commentForm="ngForm" class="ui reply form">
+            <div class="field">
+                <input type="text" name="owner" placeholder="Insert Name" required [(ngModel)]="commentModel.owner">
+            </div>
+            <div class="field">
+                <textarea name="text" required [(ngModel)]="commentModel.text"></textarea>
+            </div>
+            <button class="ui blue labeled submit icon button" [disabled]="!commentForm.valid" (click)="addComment()">
+                <i class="icon edit"></i> Add {{commentSelected ? 'Reply' : 'Comment'}}
+            </button>
+        </form>
+    </div>
+</app-modal>

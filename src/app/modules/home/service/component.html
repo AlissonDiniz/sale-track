@@ -1,0 +1,79 @@
+<div class="ui one column grid">
+    <div class="column">
+        <button class="ui purple right floated button" (click)="createSaleModal.open()">
+            <i class="icon gift"></i>
+            Add Service Sale
+        </button>
+        <div class="ui search">
+            <div class="ui icon input right floated">
+                <input class="prompt" type="text" placeholder="Search..." [disabled]="serviceSaleList.length == 0" />
+                <i class="search icon"></i>
+            </div>
+        </div>
+    </div>
+    <app-modal #createSaleModal [title]="'Create new Service Sale'" [length]="'large'">
+        <form #saleForm="ngForm" app-modal-content class="ui form">
+            <div class="ui one column stackable grid">
+                <div class="column">
+                    <div class="required field">
+                        <label>Name</label>
+                        <input type="text" name="name" placeholder="Insert Name" required [(ngModel)]="saleModel.name">
+                    </div>
+                    <div class="required field">
+                        <label>Price</label>
+                        <div class="ui icon input">
+                            <input type="number" name="price" placeholder="Insert Price" required [(ngModel)]="saleModel.price" />
+                            <i class="dollar icon"></i>
+                        </div>
+                    </div>
+                    <div class="required field">
+                        <label>Store Name</label>
+                        <input type="text" name="storeName" placeholder="Insert Store Name" required [(ngModel)]="saleModel.storeName">
+                    </div>
+                    <div class="required field">
+                        <label>Sale Link</label>
+                        <div class="ui icon input">
+                            <input type="url" name="link" placeholder="Insert Sale Link" required pattern="(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?" [(ngModel)]="saleModel.link">
+                            <i class="linkify icon"></i>
+                        </div>
+                    </div>
+                    <div class="required field">
+                        <label>Description</label>
+                        <textarea name="description" required [(ngModel)]="saleModel.description"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="ui one column grid">
+                <div class="column right aligned">
+                    <button class="ui button" type="button" (click)="cancel()">Cancel</button>
+                    <button class="ui purple button" type="submit" (click)="save()" [disabled]="!saleForm.valid">Save</button>
+                </div>
+            </div>
+        </form>
+    </app-modal>
+    <div class="column" *ngIf="serviceSaleList.length == 0">
+        <h2 class="ui center aligned header">Service Sale not found...</h2>
+    </div>
+    <div class="column" *ngFor="let serviceSale of serviceSaleList">
+        <div class="ui fluid raised card">
+            <div class="content ">
+                <div class="item-content">
+                    <label class="ui header">{{serviceSale.name}}</label>
+                    <h1 class="ui grey header">{{serviceSale.price | currency: 'USD':true:'1.2-2'}}</h1>
+                    <p>{{serviceSale.description}}</p>
+                    <div class="ui labeled button" tabindex="0">
+                        <div class="ui blue button" (click)="like(productSale)">
+                            <i class="heart icon"></i> Like
+                        </div>
+                        <a class="ui basic blue left pointing label">
+                            {{serviceSale.likes}}
+                        </a>
+                    </div>
+                    <a class="ui blue basic button" [attr.href]="serviceSale.link" target="_blank">
+                        <i class="icon shop"></i> Got to {{serviceSale.storeName}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

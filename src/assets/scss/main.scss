@@ -29,6 +29,13 @@ sui-tabset{
             font-size: 1.3em;
         }
     }
+    .ui.search{
+        .input.right.floated{
+            float: right;
+            margin-right: 20px;
+            width: 300px;
+        }
+    }
     .container{
         .grid{
             .column{
