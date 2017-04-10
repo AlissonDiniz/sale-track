@@ -2,7 +2,7 @@
     <div class="ui comments">
         <div class="comment" *ngFor="let firstComment of commentListModel">
             <a class="avatar">
-                <img src="">
+                <img src="" />
             </a>
             <div class="content">
                 <a class="author">{{firstComment.owner}}</a>
@@ -19,7 +19,7 @@
             <div class="comments">
                 <div class="comment" *ngFor="let secondComment of firstComment.commentList">
                     <a class="avatar">
-                        <img src="">
+                        <img src="" />
                     </a>
                     <div class="content">
                         <a class="author">{{secondComment.owner}}</a>
@@ -36,7 +36,7 @@
                     <div class="comments">
                         <div class="comment" *ngFor="let thirdComment of secondComment.commentList">
                             <a class="avatar">
-                                <img src="">
+                                <img src="" />
                             </a>
                             <div class="content">
                                 <a class="author">{{thirdComment.owner}}</a>
@@ -56,7 +56,7 @@
         </div>
         <form #commentForm="ngForm" class="ui reply form">
             <div class="field">
-                <input type="text" name="owner" placeholder="Insert Name" required [(ngModel)]="commentModel.owner">
+                <input #inputOwner type="text" name="owner" placeholder="Insert Name" required [(ngModel)]="commentModel.owner">
             </div>
             <div class="field">
                 <textarea name="text" required [(ngModel)]="commentModel.text"></textarea>

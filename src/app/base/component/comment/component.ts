@@ -11,6 +11,8 @@ export class CommentComponent {
 
     @ViewChild('commentModal')
     private commentModal: ModalComponent;
+    @ViewChild('inputOwner')
+    private inputOwner: ElementRef;
     private commentListModel: Comment[];
     private commentSelected: Comment;
     private commentModel: Comment = new  Comment();
@@ -26,6 +28,7 @@ export class CommentComponent {
 
     public selectComment(comment: Comment){
         this.commentSelected = comment;
+        this.inputOwner.nativeElement.focus();
     }
 
     public addComment(){

@@ -104,3 +104,19 @@ app-image{
         }
     }
 }
+.ui.comments{
+    .comment{
+        .avatar{
+            img{
+                width: 35px;
+                height: 35px;
+                background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABnElEQVRYhb2XsStFURzHPyTJYJCkl56yMDB5GWSQDJJBksRiMkjyPxgM/gSjZDAaTAbJYKCERa8MLKSeFOJ5nuG4dV33nvs7v8593/pN957f99M9v/M7vwvuKgA7wC1wBxwAs4o8Ki0DZaAaE7vAOjCclfkoUEkwj8ZaFgCXQvMq8A7kfJoXHMyDWJEkrhcCjLvxAjDgE6BHASDaAilAowJAtEYK8KQAePEJcKYAuPEJ0KUAyPsEECWLqMMnwLUC4F6xJlF5THdzaUQjPgHA3HhJF1E0Nn2bBzoUmJfQ9Q2RZgQAG1mZgynaY4v5A9CaJQCYuSAJYNU1mfQYhjVkefalyCdSO7AIbGOfij6APWAJXfP6pwnM0Ck9fuGoYOplHmhwNe4DThSmSXGBmapEmgRePZqHt2cuzXwQ95brEmVgzAawn6F5EEdhw+gx7E75Qj7UawNoqgHAn3siCvBZA4BnG8BWxuZFYCHtpWngFH9FV8J0xyliGlKdBaQT0/f7McWZA9qAFqA5kuwbeAMeMaNYEfMveQ5c/T6P1Q9mWwa/31rY9AAAAABJRU5ErkJggg==');                              
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+}
+.hide{
+    display: none;
+}

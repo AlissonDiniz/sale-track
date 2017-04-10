@@ -5,10 +5,10 @@ import { ModalComponent } from './../../../base/component/modal/component';
 import { Component, ViewChild, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-service-sale',
+    selector: 'app-flight-sale',
     templateUrl: 'component.html'
 })
-export class ServiceSaleComponent implements OnInit {
+export class FlightSaleComponent implements OnInit {
 
     @ViewChild('createSaleModal')
     private createSaleModal: ModalComponent;
@@ -24,7 +24,7 @@ export class ServiceSaleComponent implements OnInit {
     }
 
     public reload(){
-        this.uow.serviceSaleRepository.getAll()
+        this.uow.flightSaleRepository.getAll()
             .subscribe(data => {
                 this.serviceSaleList = data;
             });

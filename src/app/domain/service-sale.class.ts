@@ -3,6 +3,7 @@ import { Comment } from './comment.class';
 export class ServiceSale{
 
     private _id: string;
+    private _image: string;
     private _name: string;
     private _description: string;
     private _price: number;
@@ -19,6 +20,14 @@ export class ServiceSale{
 
     public set id(value: string){
         this._id = value;
+    }
+
+    public get image(): string{
+        return this._image;
+    }
+
+    public set image(value: string){
+        this._image = value;
     }
 
     public get name(): string{

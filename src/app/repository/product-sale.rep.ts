@@ -1,20 +1,19 @@
-import { Context } from './../core/context.class';
 import { ProductSale } from './../domain/product-sale.class';
 import { Observable, Observer } from 'rxjs/Rx';
 
 export class ProductSaleRepository {
 
-    constructor(private context: Context){}
+    constructor(private cache: ProductSale[]){}
 
     public getAll(): Observable<ProductSale[]> {
         return Observable.create((subscribe: Observer<ProductSale[]>) => {
-            subscribe.next(this.context.productSaleList);
+            subscribe.next(this.cache);
         });
     }
 
     public save(instance: ProductSale): Observable<void> {
         return Observable.create((subscribe: Observer<void>) => {
-            this.context.productSaleList.push(instance);
+            this.cache.push(instance);
             subscribe.next(null);
         });
     }

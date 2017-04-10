@@ -10,7 +10,7 @@
 <section class="ui">
     <sui-tabset>
         <div class="ui text menu">
-            <div class="ui container four column grid">
+            <div class="ui container five column grid">
                 <div class="wide column"></div>
                 <div class="wide column">
                     <a class="yellow item text-block-center" suiTabHeader="1">
@@ -22,6 +22,11 @@
                         <strong>Services</strong>
                     </a>
                 </div>
+                <div class="wide column">
+                    <a class="yellow item text-block-center" suiTabHeader="3">
+                        <strong>Flights</strong>
+                    </a>
+                </div>
                 <div class="wide column"></div>
             </div>
         </div>
@@ -29,7 +34,10 @@
             <app-product-sale #productSaleComponent></app-product-sale>
         </div>
         <div class="ui container" suiTabContent="2">
-            <app-service-sale #productSaleComponent></app-service-sale>
+            <app-service-sale #serviceSaleComponent></app-service-sale>
+        </div>
+        <div class="ui container" suiTabContent="3">
+            <app-flight-sale #flightSaleComponent></app-flight-sale>
         </div>
     </sui-tabset>
 </section>
